@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>简单版留言发布和删除</title>
+</head>
+<body>
+     <textarea name="" id="" cols="30" rows="10"></textarea>
+     <button>发布</button>
+     <ul>
+
+     </ul>
+     <script>
+         //获取元素
+         var btn=document.querySelector("button");
+         var text=document.querySelector("textarea");
+         var ul=document.querySelector("ul");
+         //绑定事件
+         btn.onclick=function () {
+             if(text.value==""){
+                 alert("内容为空，请重新输入")
+             }else{
+                 //创建元素
+                 var li=document.createElement("li");
+                 li.innerHTML=text.value+"<a href='javascript:;'>删除</a>";
+                 //添加元素
+                 //ul.appendChild(li);后面插入；
+                 ul.insertBefore(li,ul.children[0]);
+                 var lj=document.querySelectorAll("a");
+                 for (var i=0;i<lj.length;i++){
+                     lj[i].onclick=function () {
+                         ul.removeChild(this.parentNode);
+                     }
+                 }
+                 text.value="";
+             }
+         }
+     </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示隐藏文本框内容</title>
+    <style>
+        div{
+            width: 200px;
+            margin: 300px 600px;
+        }
+        input{
+            border: 1px solid gray;
+            color: #999;
+        }
+        button{
+            margin-left: -6px;
+        }
+    </style>
+</head>
+<body>
+     <div>
+         <input type="text" value="手机" >
+         <button>搜索</button>
+         <script>
+             //获取元素
+             var inputs=document.querySelector("input");
+             //绑定元素 处理元素
+             inputs.onfocus=function () {
+                 if(inputs.value==="手机"){
+                     inputs.value="";
+                 }
+                 inputs.style.color="#333";
+             }
+             inputs.onblur=function () {
+                 if(this.value===""){
+                     this.value="手机";
+                 }
+                 inputs.style.color="#999";
+             }
+         </script>
+     </div>
+</body>
+</html>

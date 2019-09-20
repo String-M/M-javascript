@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab栏切换</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .clearfix:before, .clearfix:after{
+            content: "";
+            display: table;
+        }
+        .clearfix:after{
+            clear: both;
+        }
+        .clearfix{
+            zoom: 1;
+        }
+        .dbox{
+            width: 800px;
+            margin: 100px auto;
+            font:400 15px/15px "微软雅黑";
+        }
+        .xbox-1{
+            width:800px;
+            background-color: #d7d9ff;
+        }
+        .xbox-1 li{
+            float: left;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        .xbox-2{
+            width: 800px;
+        }
+        .item{
+            padding: 2px;
+            display: none;
+        }
+        .current{
+            background-color: #ff131c;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="dbox">
+        <div class="xbox-1 clearfix">
+            <ul>
+                <li class="current">商品介绍</li>
+                <li>规格和包装</li>
+                <li>售后保障</li>
+                <li>商品评价（5000）</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="xbox-2">
+            <div class="item" style="display:block;">
+                商品介绍模块内容
+            </div>
+            <div class="item">
+                规格和包装模块内容
+            </div>
+            <div class="item">
+                售后保障模块内容
+            </div>
+            <div class="item">
+                商品评价（5000）模块内容
+            </div>
+            <div class="item">
+                手机社区模块内容
+            </div>
+        </div>
+    </div>
+    <script>
+        //获取元素
+        var lis=document.querySelector(".xbox-1");
+        var list=lis.querySelectorAll("li");
+        var items=document.querySelectorAll(".item");
+        //绑定事件
+        for(var i=0;i<list.length;i++){
+            list[i].setAttribute("index",i);
+            list[i].onclick=function () {
+                for(var i=0;i<list.length;i++){
+                    list[i].className="";
+                }
+                this.className="current";
+                var index=this.getAttribute("index");
+                for(var i=0;i<list.length;i++){
+                    items[i].style.display="none";
+                }
+                items[index].style.display="block";
+            }
+        }
+    </script>
+</body>
+</html>

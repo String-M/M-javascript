@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+    <style>
+        table{
+            width: 400px;
+            margin: 100px auto;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        thead tr{
+            height: 40px;
+            background-color: #ccc;
+        }
+        td,
+        th{
+            border: 1px solid #333;
+        }
+        
+    </style>
+</head>
+<body>
+     <table>
+         <thead>
+         <tr>
+             <th>姓名</th>
+             <th>科目</th>
+             <th>成绩</th>
+             <th>操作</th>
+         </tr>
+         </thead>
+         <tbody>
+
+         </tbody>
+     </table>
+     <script>
+         var dates=[
+             {
+                 name:"黄狗",
+                 subject:"javaScript",
+                 score:80
+             },
+             {
+                 name:"黑狗",
+                 subject:"javaScript",
+                 score:90
+             },
+             {
+                 name:"花狗",
+                 subject:"javaScript",
+                 score:60
+             },
+             {
+                 name:"聪明狗",
+                 subject:"javaScript",
+                 score:100
+             }
+         ];
+         //创建行
+         var tb=document.querySelector("tbody");
+         for (var i=0;i<dates.length;i++){
+             var tr=document.createElement("tr");
+             tb.appendChild(tr);
+             //创建单元格
+             for (var k in dates[i]){
+                 var td=document.createElement("td");
+                 //填充数据
+                 td.innerHTML=dates[i][k];
+                 tr.appendChild(td);
+             }
+             //创建删除的单元格
+             var sc=document.createElement("td");
+             sc.innerHTML="<a href='javascript:;'>删除</a>";
+             tr.appendChild(sc);
+         }
+         //删除单元格
+         var sq=document.querySelectorAll("a");
+         for (var i=0;i<sq.length;i++){
+             sq[i].onclick=function () {
+                 tb.removeChild(this.parentNode.parentNode);
+             }
+         }
+     </script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+1.HTML 5 视频
+
+  video 元素：包含视频
+  1）<video> 标签的属性
+     src-------->要播放的视频的 URL。
+     width------>设置视频播放器的宽度。
+     height----->设置视频播放器的高度。
+     controls--->如果出现该属性，则向用户显示控件，比如播放按钮。一般为：controls="controls"
+     autoplay--->如果出现该属性，则视频在就绪后马上播放。一般为：autoplay="autoplay"
+     loop------->如果出现该属性，则当媒介文件完成播放后再次开始播放。一般为：loop="loop"
+
+  2)<video> 与 </video> 之间插入的内容是供不支持 video 元素的浏览器显示的.
+   
+  3)video 元素允许多个 source 元素。source 元素可以链接不同的视频文件。浏览器将使用第一个可识别的格式：
+
+  4)使用 DOM 进行控制 video 元素(方法)
+    play()-------->播放
+    pause()------->暂停
+    load()-------->下载
+    canPlayType--->
+
+2.HTML 5 音频
+
+  audio 元素：包含音频
+  1）<audio> 标签的属性
+      src-------->要播放的音频的 URL。
+      controls--->如果出现该属性，则向用户显示控件，比如播放按钮。一般为：controls="controls"
+      autoplay--->如果出现该属性，则视频在就绪后马上播放。一般为：autoplay="autoplay"
+      loop------->如果出现该属性，则当媒介文件完成播放后再次开始播放。一般为：loop="loop" 
+
+  2）<audio> 与 </audio> 之间插入的内容是供不支持 audio 元素的浏览器显示的
+
+  3）audio 元素允许多个 source 元素。source 元素可以链接不同的音频文件。浏览器将使用第一个可识别的格式
+
+
+3.HTML 5 拖放
+
+  拖放是一种常见的特性，即抓取对象以后拖到另一个位置。任何元素都能够拖放。
+
+  1）设置元素为可拖放：把 draggable 属性设置为 true 。例如：draggable="true"
+
+     设置元素添加事件：ondragstart 事件。ondragstart="处理函数" 
+         
+           该处理函数：dataTransfer.setData() 方法设置被拖数据的数据类型和值
+
+  2）设置元素放到何处：ondragover 事件规定在何处放置被拖动的数据。ondragover="处理函数"
+
+           该处理函数：event.preventDefault() 方法 阻止对元素的默认处理方式。
+
+
+     设置元素进行放置：ondrop 事件：ondrop="处理函数"   drop(event)
+
+           该处理函数：event.preventDefault() 方法 避免浏览器对数据的默认处理
+                      
+                      dataTransfer.getData("Text") 方法获得被拖的数据。该方法将返回在 setData() 方法中设置为相同类型的任何数据。
+
+                      获取上述方法得到的数据。document.getElementById(data)
+
+                      把 获取数据 追加到放置元素（目标元素，ev.target）中
+ 
+                      function drop(ev)
+		      {
+		      ev.preventDefault();
+		      var data=ev.dataTransfer.getData("Text");
+                      ev.target.appendChild(document.getElementById(data));
+		      }
+                      
+4.HTML 5 画布
+  
+  canvas 元素：用于在网页上绘制图形。
+
+  1）规定元素的 id、宽度和高度。例如：<canvas id="myCanvas" width="200" height="100"></canvas>
+  
+  2）通过 JavaScript 来绘制。canvas 元素本身是没有绘图能力的。所有的绘制工作必须在 JavaScript 内部完成
+ 
+     JavaScript 使用 id 来寻找 canvas 元素。  例如：var c=document.getElementById("myCanvas");
+
+     创建 context 对象  例如：var cxt=c.getContext("2d"); 
+
+                        getContext("2d") 对象是内建的 HTML5 对象，拥有多种绘制路径、矩形、圆形、字符以及添加图像的方法。
+
+                        fillStyle 方法将其进行染色，fillRect（位置，形状） 方法规定了形状、位置和尺寸。
+
+
+
+5.SVG 元素
+
+  SVG 指可伸缩矢量图形。用于定义 用于网络的基于矢量的 图形。图像在放大或改变尺寸的情况下其图形质量不会有损失。
+
+  将 SVG 元素直接嵌入 HTML 页面中（与HTML不同）
+
+  SVG 标签内元素(SVG 形状)
+      折线 <polyline>---->points 属性定义折线每个角的 x 和 y 坐标
+      多边形 <polygon>--->points 属性定义多边形每个角的 x 和 y 坐标
+      线<line>----------->x1 属性在 x 轴定义线条的开始。x2 属性在 x 轴定义线条的结束。y1 属性在 y 轴定义线条的开始。y2 属性在 y 轴定义线条的结束
+      椭圆 <ellipse>----->cx 和 cy 属性定义椭圆点的 x 和 y 坐标。rx 属性定义水平半径。ry 属性定义垂直半径
+      圆形 <circle>------>cx 和 cy 属性定义圆点的 x 和 y 坐标。如果省略 cx 和 cy，圆的中心会被设置为 (0, 0)。r 属性定义圆的半径。
+      矩形 <rect>-------->width 和 height 属性可定义矩形的高度和宽度
+      路径 <path>-------->M = moveto-------------------------------开始位置
+    			  L = lineto-------------------------------画直线
+    			  H = horizontal lineto
+    			  V = vertical lineto
+    		          C = curveto------------------------------曲线
+    			  S = smooth curveto-----------------------平滑曲线
+    			  Q = quadratic Belzier curve
+   			  T = smooth quadratic Belzier curveto
+    			  A = elliptical Arc
+    			  Z = closepath----------------------------关闭路径
+                     以上所有命令均允许小写字母。大写表示绝对定位，小写表示相对定位。
+
+                     由于绘制路径的复杂性，因此强烈建议您使用 SVG 编辑器来创建复杂的图形。
+
+
+   SVG 高斯模糊：<defs> 标签中定义 SVG 滤镜。
+                 <filter> 标签必须嵌套在 <defs> 标签内。<filter> 标签的 id 属性可为滤镜定义一个唯一的名称（同一滤镜可被文档中的多个元素使用）
+                  <feGaussianBlur> 标签定义滤镜效果的。fe 后缀可用于所有的滤镜。stdDeviation 属性可定义模糊的程度。in="SourceGraphic" 这个部分定义了由整个图像创建效果。
+
+   SVG 线性渐变：SVG 渐变必须在 <defs> 标签中进行定义。
+        
+                渐变是一种从一种颜色到另一种颜色的平滑过渡。在 SVG 中，有两种主要的渐变类型：线性渐变、放射性渐变
+ 
+                    <linearGradient> 用来定义线性渐变。<linearGradient> 标签必须嵌套在 <defs> 的内部。
+
+                        线性渐变可被定义为水平、垂直或角形的渐变：当 y1 和 y2 相等，而 x1 和 x2 不同时，可创建水平渐变
+                                                               当 x1 和 x2 相等，而 y1 和 y2 不同时，可创建垂直渐变
+                                                                当 x1 和 x2 不同，且 y1 和 y2 不同时，可创建角形渐变
+
+
+                    <radialGradient> 用来定义放射性渐变。<radialGradient> 标签必须嵌套在 <defs> 中。
+
+                                  id 属性可为渐变定义一个唯一的名称。
+                                  fill:url(#grey_blue) 属性把 ellipse 元素链接到此渐变
+                                  每种颜色通过一个 <stop> 标签来规定。
+                                  offset 属性用来定义渐变的开始和结束位置。 
+
+
+
+Canvas 和 SVG 都允许您在浏览器中创建图形，但是它们在根本上是不同的。
+
+
+6.HTML5 地理定位
+  getCurrentPosition() 方法来获得用户的位置。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
